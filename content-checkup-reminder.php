@@ -80,9 +80,9 @@ class Content_Checkup {
 			$sql = " SELECT ID as id, post_title as title, post_modified, as modified FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'page' ";
 			$content = $wpdb->get_results( $wpdb->prepare( $sql ) );
 
-            $email_to       = ( isset( $options['email'] ) ) ? $options['email'] : get_option( 'admin_email' );
-            $email_subject  = ( isset( $options['email_subject'] ) ) ? $options['email_subject'] : __( 'Content Checkup Reminder', 'content-checkup' );
-            $email_msg      = ( isset( $options['email_msg'] ) ) ? $options['email_msg'] : __( 'Check on your website content. Make sure it is all still accurate and up-to-date. The following pages could use a check:', 'content-checkup' );
+			$email_to       = ( isset( $options['email'] ) ) ? $options['email'] : get_option( 'admin_email' );
+			$email_subject  = ( isset( $options['email_subject'] ) ) ? $options['email_subject'] : __( 'Content Checkup Reminder', 'content-checkup' );
+			$email_msg      = ( isset( $options['email_msg'] ) ) ? $options['email_msg'] : __( 'Check on your website content. Make sure it is all still accurate and up-to-date. The following pages could use a check:', 'content-checkup' );
 
 			foreach ( $content as $page ) {
 				if ( strtotime( $page->post_modified ) <= $timeframe ) {
@@ -156,35 +156,35 @@ class Content_Checkup {
 
 		add_settings_section( 'content_checkup_settings', __( 'Content Checkup Reminder', 'content-checkup' ), array( &$this, 'content_checkup_do_section' ), 'content_checkup_do_options' );
 		add_settings_field( 'content_checkup_enable', '<label for="content_checkup_enable">' . __( 'Enable Content Reminder', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
-		    'id' => 'content_checkup_enable',
-		    'type' => 'checkbox',
+			'id' => 'content_checkup_enable',
+			'type' => 'checkbox',
 			'name' => 'content-checkup-reminder[enable]',
 			'value' => $options['enable'] ) );
 		add_settings_field( 'content_checkup_crontimeframe', '<label for="content_checkup_crontimeframe">' . __( 'Amount of days between notifications?', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
-		    'class' => 'short-text',
-		    'id' => 'content_checkup_crontimeframe',
-		    'type' => 'text',
+			'class' => 'short-text',
+			'id' => 'content_checkup_crontimeframe',
+			'type' => 'text',
 			'name' => 'content-checkup-reminder[timeframe]',
 			'value' => $options['timeframe'],
 			'description' => 'value between 1 and 30' ) );
 		add_settings_field( 'content_checkup_email', '<label for="content_checkup_email">' . __( 'Email to send notification to?', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
-		    'class' => 'short-text',
-		    'id' => 'content_checkup_email',
-		    'type' => 'email',
+			'class' => 'short-text',
+			'id' => 'content_checkup_email',
+			'type' => 'email',
 			'name' => 'content-checkup-reminder[email]',
 			'value' => $options['email'],
 			'description' => 'email@domain.com' ) );
 		add_settings_field( 'content_checkup_subject', '<label for="content_checkup_subject">' . __( 'Subject for the email?', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
-		    'class' => 'short-text',
-		    'id' => 'content_checkup_subject',
-		    'type' => 'text',
+			'class' => 'short-text',
+			'id' => 'content_checkup_subject',
+			'type' => 'text',
 			'name' => 'content-checkup-reminder[email_subject]',
 			'value' => $options['email_subject'],
 			'description' => 'Content check reminder' ) );
 		add_settings_field( 'content_checkup_msg', '<label for="content_checkup_msg">' . __( 'Message for the email?', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
-		    'class' => 'large-text',
-		    'id' => 'content_checkup_msg',
-		    'type' => 'textarea',
+			'class' => 'large-text',
+			'id' => 'content_checkup_msg',
+			'type' => 'textarea',
 			'name' => 'content-checkup-reminder[email_msg]',
 			'value' => $options['email_msg'],
 			'description' => 'Go update your content' ) );
@@ -199,9 +199,9 @@ class Content_Checkup {
 	 */
 	function content_checkup_input_fields( $args ) {
 		extract( wp_parse_args( $args, array(
-		    'class' => null,
-		    'id' => null,
-		    'type' => null,
+			'class' => null,
+			'id' => null,
+			'type' => null,
 			'name' => null,
 			'value' => '',
 			'description' => null
