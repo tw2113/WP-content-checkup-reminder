@@ -1,0 +1,70 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Content Checkup Reminder\n"
+"POT-Creation-Date: 2013-09-24 00:40-0600\n"
+"PO-Revision-Date: 2013-09-24 00:40-0600\n"
+"Last-Translator: \n"
+"Language-Team: Michael Beckwith <michael.d.beckwith@gmail.com>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../content-checkup-reminder.php:84 ../content-checkup-reminder.php:157
+msgid "Content Checkup Reminder"
+msgstr ""
+
+#: ../content-checkup-reminder.php:85
+msgid ""
+"Check on your website content. Make sure it is all still accurate and up-to-"
+"date. The following pages could use a check:"
+msgstr ""
+
+#: ../content-checkup-reminder.php:110 ../content-checkup-reminder.php:123
+msgid "Content Checkup Reminder Settings"
+msgstr ""
+
+#: ../content-checkup-reminder.php:140
+msgid ""
+"Here you can enable or disable the plugin completely and set an amount of "
+"days you want to elapse before you start getting notified. Days can be up to "
+"30 total."
+msgstr ""
+
+#: ../content-checkup-reminder.php:158
+msgid "Enable Content Reminder"
+msgstr ""
+
+#: ../content-checkup-reminder.php:163
+msgid "Amount of days between notifications?"
+msgstr ""
+
+#: ../content-checkup-reminder.php:170
+msgid "Email to send notification to?"
+msgstr ""
+
+#: ../content-checkup-reminder.php:177
+msgid "Subject for the email?"
+msgstr ""
+
+#: ../content-checkup-reminder.php:184
+msgid "Message for the email?"
+msgstr ""
+
+#: ../content-checkup-reminder.php:239
+msgid "No inputs were provided to validate"
+msgstr ""
+
+#: ../content-checkup-reminder.php:243
+msgid ""
+"Please enter a number between 1 and 30 for the \"Amount of days\" value."
+msgstr ""
+
+#: ../content-checkup-reminder.php:249
+msgid "Please enter a valid email address"
+msgstr ""
