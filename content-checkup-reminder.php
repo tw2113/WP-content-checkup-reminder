@@ -12,12 +12,12 @@ Text Domain: content-checkup
 class Content_Checkup {
 
 	public function __construct() {
-		add_action( 'init', array( &$this, 'load_textdomain' ) );
-		add_action( 'admin_menu', array( &$this, 'content_checkup_add_page' ) );
-		add_action( 'admin_init', array( &$this, 'content_checkup_settings_init' ) );
-		add_action( 'admin_init', array( &$this, 'cron_reminder_init' ) );
-		add_action( 'content_checkup_cron_hook', array( &$this, 'cron_reminder_check' ) );
-		add_action( 'admin_head', array( &$this, 'content_checkup_style' ) );
+		add_action( 'init', array( $this, 'load_textdomain' ) );
+		add_action( 'admin_menu', array( $this, 'content_checkup_add_page' ) );
+		add_action( 'admin_init', array( $this, 'content_checkup_settings_init' ) );
+		add_action( 'admin_init', array( $this, 'cron_reminder_init' ) );
+		add_action( 'content_checkup_cron_hook', array( $this, 'cron_reminder_check' ) );
+		add_action( 'admin_head', array( $this, 'content_checkup_style' ) );
 	}
 
 	/**
@@ -107,7 +107,7 @@ class Content_Checkup {
 	 */
 	public function content_checkup_add_page() {
 		global $content_checkup_hook;
-		$content_checkup_hook = add_options_page( __( 'Content Checkup Reminder Settings', 'content-checkup' ), __( 'Content Checkup Reminder Settings', 'content-checkup' ), 'manage_options', 'content_checkup_options', array( &$this, 'content_checkup_do_page' ) );
+		$content_checkup_hook = add_options_page( __( 'Content Checkup Reminder Settings', 'content-checkup' ), __( 'Content Checkup Reminder Settings', 'content-checkup' ), 'manage_options', 'content_checkup_options', array( $this, 'content_checkup_do_page' ) );
 	}
 
 	/**
@@ -151,37 +151,37 @@ class Content_Checkup {
 	 */
 	public function content_checkup_settings_init() {
 		//content-checkup-reminder needs to match the array provided in the name value of add_settings_field.
-		register_setting( 'content-checkup-reminder', 'content-checkup-reminder', array( &$this, 'content_checkup_validate' ) );
+		register_setting( 'content-checkup-reminder', 'content-checkup-reminder', array( $this, 'content_checkup_validate' ) );
 		$options = get_option( 'content-checkup-reminder' );
 
-		add_settings_section( 'content_checkup_settings', __( 'Content Checkup Reminder', 'content-checkup' ), array( &$this, 'content_checkup_do_section' ), 'content_checkup_do_options' );
-		add_settings_field( 'content_checkup_enable', '<label for="content_checkup_enable">' . __( 'Enable Content Reminder', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
+		add_settings_section( 'content_checkup_settings', __( 'Content Checkup Reminder', 'content-checkup' ), array( $this, 'content_checkup_do_section' ), 'content_checkup_do_options' );
+		add_settings_field( 'content_checkup_enable', '<label for="content_checkup_enable">' . __( 'Enable Content Reminder', 'content-checkup' ) . '</label>', array( $this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
 			'id' => 'content_checkup_enable',
 			'type' => 'checkbox',
 			'name' => 'content-checkup-reminder[enable]',
 			'value' => $options['enable'] ) );
-		add_settings_field( 'content_checkup_crontimeframe', '<label for="content_checkup_crontimeframe">' . __( 'Amount of days between notifications?', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
+		add_settings_field( 'content_checkup_crontimeframe', '<label for="content_checkup_crontimeframe">' . __( 'Amount of days between notifications?', 'content-checkup' ) . '</label>', array( $this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
 			'class' => 'short-text',
 			'id' => 'content_checkup_crontimeframe',
 			'type' => 'text',
 			'name' => 'content-checkup-reminder[timeframe]',
 			'value' => $options['timeframe'],
 			'description' => 'value between 1 and 30' ) );
-		add_settings_field( 'content_checkup_email', '<label for="content_checkup_email">' . __( 'Email to send notification to?', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
+		add_settings_field( 'content_checkup_email', '<label for="content_checkup_email">' . __( 'Email to send notification to?', 'content-checkup' ) . '</label>', array( $this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
 			'class' => 'short-text',
 			'id' => 'content_checkup_email',
 			'type' => 'email',
 			'name' => 'content-checkup-reminder[email]',
 			'value' => $options['email'],
 			'description' => 'email@domain.com' ) );
-		add_settings_field( 'content_checkup_subject', '<label for="content_checkup_subject">' . __( 'Subject for the email?', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
+		add_settings_field( 'content_checkup_subject', '<label for="content_checkup_subject">' . __( 'Subject for the email?', 'content-checkup' ) . '</label>', array( $this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
 			'class' => 'short-text',
 			'id' => 'content_checkup_subject',
 			'type' => 'text',
 			'name' => 'content-checkup-reminder[email_subject]',
 			'value' => $options['email_subject'],
 			'description' => 'Content check reminder' ) );
-		add_settings_field( 'content_checkup_msg', '<label for="content_checkup_msg">' . __( 'Message for the email?', 'content-checkup' ) . '</label>', array( &$this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
+		add_settings_field( 'content_checkup_msg', '<label for="content_checkup_msg">' . __( 'Message for the email?', 'content-checkup' ) . '</label>', array( $this, 'content_checkup_input_fields' ), 'content_checkup_do_options', 'content_checkup_settings', array(
 			'class' => 'large-text',
 			'id' => 'content_checkup_msg',
 			'type' => 'textarea',
