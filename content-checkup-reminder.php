@@ -77,7 +77,7 @@ class Content_Checkup {
 				$timeframe = strtotime( '-' . absint( $options['timeframe'] ) . ' days' );
 			}
 			//retrieve ID, post_title, and post_modified time
-			$sql = " SELECT ID as id, post_title as title, post_modified, as modified FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'page' ";
+			$sql = " SELECT ID as id, post_title as title, post_modified as modified FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'page' ";
 			$content = $wpdb->get_results( $wpdb->prepare( $sql ) );
 
 			$email_to       = ( isset( $options['email'] ) ) ? $options['email'] : get_option( 'admin_email' );
